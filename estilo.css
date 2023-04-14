@@ -1,0 +1,88 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+   
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100vh;
+    grid-template-areas: "i p";
+}
+
+.imagem{
+      grid-area: "i";
+      display:flex ;
+      flex-direction: column;
+      background-image: url(imagem/foto\ pagina\ inicial.jpg);
+      background-repeat: no-repeat;
+      background-size: 100%;
+  }     
+      
+
+main{
+    grid-area: "p";
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: green;
+    justify-content: center;
+    align-items: center;
+   
+  }     
+
+  .inicial{
+    background-color: black;
+    height: 80%;
+    width: 100%;
+    display: flex;
+justify-content: space-around;
+align-items: center;
+flex-direction: column;
+
+}
+
+.btns{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    color: white;
+    align-items: center;
+}
+
+.btns > p{
+    font-size: 2rem;
+}
+
+.btn{
+    background-color: rgb(115, 185, 115);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    width: 270px;
+}
+
+.btn a {
+    text-decoration: none;
+    color: black;
+}
+
+@media (max-width: 800px){
+    .container{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows:200px auto;
+        grid-template-areas: "i"
+         "p";
+    }
+    
+    main {
+        background-color: black;
+    }
+}
