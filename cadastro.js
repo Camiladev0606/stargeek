@@ -60,4 +60,4 @@ function criarUsuario(evento){
     setTimeout(()=>{
         window.location.assign("login.html");
     },2000)
-}
+}7
