@@ -5,6 +5,7 @@ const email = document.getElementById("email");
 const senha = document.getElementById("senha");
 
 
+
 function verificarEmail(email, evento){
     let dados = JSON.parse(localStorage.getItem("bd"));
     if (dados == null){
@@ -60,4 +61,5 @@ function criarUsuario(evento){
     setTimeout(()=>{
         window.location.assign("login.html");
     },2000)
-}7
+}
+

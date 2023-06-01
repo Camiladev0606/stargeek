@@ -1,7 +1,10 @@
 const nomeObra = document.getElementById("nome");
 const descricao = document.getElementById("descricao");
+const foto = document.getElementById("imagem");
 const botaocadastrar = document.getElementById("btncadastro");
 
+var emaillogado;
+femaillogado();
 
 var url = new URL(window.location.href);
 var peditar = url.searchParams.get("peditar");
@@ -14,7 +17,6 @@ if (peditar == "true"){
 function editar(indice){
     nome.value = "";
     descricao.value = "";
-    foto.files[0] = null;
     let dados = JSON.parse(localStorage.getItem ("catalogo"));
     nome.value = dados[indice].nome;
     descricao.value = dados[indice].descricao;
@@ -32,10 +34,11 @@ botaocadastrar.onclick = (evento) => {
             let dados = JSON.parse(localStorage.getItem("catalogo")) || [];
             dados.push(
         {
-            nome : nomeObra.value,
-            descricao : descricao.value,
-            foto  : nomeArq   
-        }
+            nome: nomeObra.value,
+            descricao: descricao.value,
+            foto: nomeArq,  
+            email: emaillogado
+        } 
     )
 
     localStorage.setItem("catalogo", JSON.stringify(dados));
@@ -62,10 +65,10 @@ async function fenvio() {
     const arquivo = document.getElementById("imagem").files[0];
     const formData = new FormData();
     formData.append('arquivo', arquivo);
-    console.log(JSON.stringify(FormData));
+    console.log(JSON.stringify(formData));
     try{
 
-            var resp = await fetch(url, {
+            var resp = await fetch (url, {
                                             method: 'POST',
                                             body: formData
                                         }
@@ -89,7 +92,7 @@ async function fenvio() {
 
 function editarenvio (evento){
     evento.preventDefault();
-    if ((fotoa != foto.value)&&(foto.value != "")){
+    if ((fotoa !=foto.value)&&(foto.value != "")){
         fenvio()
         .then(result =>{
             if(result){
@@ -108,7 +111,16 @@ function salvaEdicao(pfoto){
     let dados = JSON.parse(localStorage.getItem("catalogo"));
     dados[pindice].nome = nome.value;
     dados[pindice].descricao = descricao.value;
-    dados[pindice].foto = photo;
+    dados[pindice].foto = pfoto;
     dados[pindice].email = emaillogado;
     localStorage.setItem("catalogo", JSON.stringify(dados));
-} 
+}
+
+function femaillogado(){
+    let dados = sessionStorage.getItem("logado");
+    if (dados == null){
+        window.location.assign("login.html");
+    } else{
+        emaillogado = dados;
+    }
+}

@@ -23,9 +23,10 @@ formulario.onsubmit = (evt)=>{
     let logado;
     dados.forEach((elemento) => {
         if(elemento.emailcliente == email.value && elemento.senhacliente == senha.value){
-            msg.innerHTML = "Aguarde redirecionando..."
+            msg.innerHTML = "Aguarde redirecionando..." 
+            sessionStorage.setItem("logado", email.value);
             setTimeout(()=>{
-                 window.location.assign("catalago.html");
+                 window.location.assign("catalogo.html");
             },2000);
             evt.preventDefault();
             logado = "ok";
